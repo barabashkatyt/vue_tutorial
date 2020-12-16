@@ -4,6 +4,7 @@
     <div id="nav">
           <router-link to="/">Home</router-link>
           <router-link to="/todos">Todos</router-link>
+          <router-link to="/counter">Count</router-link>
     </div>
   </header>
 </template>
