@@ -1,13 +1,12 @@
 <template>
-  <li>
+  <li class="todo-item">
     <span v-bind:class="{done: todo.completed}">
       <input type="checkbox"
              v-on:change="todo.completed = !todo.completed">
       <strong>{{index + 1}}</strong>
       {{todo.title | uppercase}}
     </span>
-    <button class="rm"
-            v-on:click="$emit('remove-todo', todo.id)"
+    <button class="rm" v-on:click="$emit('remove-todo', todo.id)"
     >&times;</button>
   </li>
 </template>
@@ -31,26 +30,26 @@ export default {
 </script>
 
 <style scoped>
-  li {
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    padding: .5rem 2rem;
-    margin-bottom: 1rem;
+.todo-item{
+  background: #f4f4f4;
+  padding: 10px;
+  border-bottom: 1px #ccc dotted;
+} 
+  .done {
+    text-decoration: line-through;
   }
 
   .rm {
-    background: red;
+    background: #ff0000;
     color: #fff;
+    border: none;
+    padding: 5px 9px;
     border-radius: 50%;
-    font-weight: bold;
+    cursor: pointer;
+    float: right;
   }
 
   input {
     margin-right: 1rem;
-  }
-
-  .done {
-    text-decoration: line-through;
   }
 </style>

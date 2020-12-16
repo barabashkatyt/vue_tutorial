@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <input type="text" v-model="title">
-    <button type="submit">Create</button>
+    <input type="text" name="title" v-model="title" placeholder="Add todo ...">
+    <input type="submit" value="Submit" class="btn" />
   </form>
 </template>
 
@@ -34,7 +34,12 @@ export default {
     display: flex;
   }
 
-  input {
-    width: 400px;
+  input[type="text"] {
+    flex: 10;
+    padding: 5px;
+  }
+
+  input[type="submit"]{
+    flex: 2;
   }
 </style>

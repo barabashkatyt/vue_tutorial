@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h2>Todo application</h2>
-    <router-link to="/">Home</router-link>
-    <hr>
     <AddTodo
         @add-todo="addTodo"
     />
@@ -11,7 +8,6 @@
       <option value="completed">Completed</option>
       <option value="not-completed">Not Completed</option>
     </select>
-    <hr>
     <Loader v-if="loading" />
     <TodoList
         v-else-if="filteredTodos.length"
@@ -20,12 +16,17 @@
     />
     <p v-else>No todos!</p>
   </div>
+  
 </template>
 
 <script>
 import TodoList from '@/components/TodoList'
 import AddTodo from '@/components/AddTodo'
 import Loader from '@/components/Loader'
+import Header from '../components/layout/Header.vue'
+import axios from 'axios'
+
+
 export default {
   name: 'app',
   data() {
@@ -35,16 +36,10 @@ export default {
       filter: 'all'
     }
   },
-  mounted() {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
-      .then(response => response.json())
-      .then(json => {
-        setTimeout(() => {
-          this.todos = json
-          this.loading = false
-        }, 1000)
-
-      })
+  mounted(){
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=3')
+    .then(responce => {this.todos = responce.data,this.loading = false})
+    .catch(err=>console.log(err))
   },
   // watch: {
   //   filter(value) {
@@ -68,14 +63,19 @@ export default {
   },
   methods: {
     removeTodo(id) {
-      this.todos = this.todos.filter(t => t.id !== id)
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res=>this.todos = this.todos.filter(t => t.id !== id))
+      .catch(err=>console.log(err))
     },
     addTodo(todo) {
-      this.todos.push(todo)
-    }
+      const {title,completed} = todo;
+      axios.post('https://jsonplaceholder.typicode.com/todos',{title,completed})
+      .then(res=> this.todos = [...this.todos,res.data])
+      .catch(err=>console.log(err))
+    },
   },
   components: {
-    TodoList, AddTodo, Loader
+    TodoList, AddTodo, Loader, Header
   }
 }
 </script>
