@@ -2,7 +2,7 @@
   <div id="container">
     <PostForm />
     <h1>{{postsCount}}</h1>
-    <div class="post" v-for="post in allPosts" :key="post.id">
+    <div class="post" v-for="post in validatePosts" :key="post.id">
       <h2>{{post.title}}</h2>
       <p>{{post.body}}</p>
     </div>
@@ -14,7 +14,7 @@ import { mapGetters,mapActions } from 'vuex'
 import PostForm from './../components/PostForm'
 export default {
   name:"Posts",
-  computed:mapGetters(['allPosts','postsCount']),
+  computed:mapGetters(['allPosts','postsCount','validatePosts']),
   methods:mapActions(['fetchPosts']),
   async mounted(){
     // this.$store.dispatch('fetchPosts')
