@@ -5,6 +5,7 @@
           <router-link to="/">Home</router-link>
           <router-link to="/todos">Todos</router-link>
           <router-link to="/counter">Count</router-link>
+          <router-link to="/posts">Posts</router-link>
     </div>
   </header>
 </template>

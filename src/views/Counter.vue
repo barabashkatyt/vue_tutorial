@@ -29,15 +29,8 @@ export default {
 <style scoped>
 .counter{
   display: flex;
+  text-align: center;
   margin: 3rem;
   flex-direction: column;
 }
-h1{
-  margin: 1.5rem auto;
-}
-b{
-  margin: 1rem auto;
-}
-
-
 </style>
