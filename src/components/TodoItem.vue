@@ -22,7 +22,6 @@ export default {
   },
   filters: {
     uppercase(value) {
-      console.log(value)
       return value.toUpperCase()
     }
   }
