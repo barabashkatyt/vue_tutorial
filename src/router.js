@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       path: "/clock",
-      component: () => import("./views/Clocks.vue"),
+      component: () => import("./views/Clock.vue"),
     },
   ],
 });
